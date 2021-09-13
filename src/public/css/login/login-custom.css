@@ -14,14 +14,7 @@ body{
     margin:0;
     overflow: hidden;
     font-family: 'Gudea', sans-serif;
-    background: #EA5C54 ; /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  #EA5C54  0%, #bb6dec 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#EA5C54 ), color-stop(100%,#bb6dec)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* IE10+ */
-    background: linear-gradient(135deg,  #EA5C54  0%,#bb6dec 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EA5C54 ', endColorstr='#bb6dec',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: #11101d;
 }  
 
 
@@ -77,7 +70,7 @@ ion-icon {
     font-weight: 700;
     border: none;
     border-radius: 30px;
-    color: #fa48dc;
+    color: #11101d;
     transition-duration: 0.25s;
 }
 
@@ -87,7 +80,7 @@ ion-icon {
 
 .form input:focus {
     width: 400px;
-    border: 5px solid #fa48dc;
+    border: 5px solid #11101d;
 }
 
 p {
@@ -118,12 +111,12 @@ button {
     width: 150px;
     border-radius: 30px;
     transition-duration: 0.25s;
-    color: rgb(230, 68, 194);
+    color: #11101d;
     margin-bottom: 7px;
 }
 
 button:hover {
-    background-color: #fa48dc;
+    background-color: #11101d;
     color: white;
     border: 5px solid white;
 }
