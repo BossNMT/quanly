@@ -1,0 +1,44 @@
+{{> header}}
+
+<div class="home_content">
+    <div class="text">
+        <div class="mt-4">
+            <h3>Nhập Kho</h3>
+
+            <form method="POST" action="/send/create/kho">
+                <div class="form-group">
+                    <label>Tên Sản Phẩm</label>
+                    <input type="text" value="" name="sanpham" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Model:</label>
+                    <input type="text" value="" name="model" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Số lượng</label>
+                    <input type="number" value="" name="soluong" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Tổng tiền</label>
+                    <input type="number" value="" name="tongtien" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tạo hóa đơn</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const fullName = document.querySelector('input[name="sanpham"]')
+    const model = document.querySelector('input[name="model"]')
+    const tongtien = document.querySelector('input[name="tongtien"]')
+
+    fullName.onblur = function () {
+        fullName.value = fullName.value.toUpperCase()
+    }
+
+    model.onblur = function () {
+        model.value = model.value.toUpperCase()
+    }
+</script>

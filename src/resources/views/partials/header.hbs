@@ -1,0 +1,67 @@
+<div class="sidebar">
+    <div class="logo_content">
+        <div class="logo">
+            <i class='bx bxl-nodejs'></i>
+            <div class="logo_name">Quản Lý</div>
+        </div>
+        <i class='bx bx-menu' id="btn-menu"></i>
+    </div>
+    <ul class="nav_list">
+        {{!-- Trang Chủ --}}
+        <li>
+            <a href="/">
+                <i class='bx bx-home-alt'></i>
+                <span class="links_name">Trang Chủ</span>
+            </a>
+            <span class="hide-config">Trang Chủ</span>
+        </li>
+        {{!-- Tạo Hóa Đơn --}}
+        <li>
+            <a href="/me/create/hoa-don">
+                <i class='bx bx-cart'></i>
+                <span class="links_name">Tạo Hóa Đơn</span>
+            </a>
+            <span class="hide-config">Tạo Hóa Đơn</span>
+        </li>
+        {{!-- Danh Sách Hóa Đơn --}}
+        <li>
+            <a href="/me/hoa-don">
+                <i class='bx bx-spreadsheet'></i>
+                <span class="links_name">Hóa Đơn</span>
+            </a>
+            <span class="hide-config">Hóa Đơn</span>
+        </li>
+        {{!-- Kho --}}
+        <li>
+            <a href="/me/kho">
+                <i class='bx bx-window-open'></i>
+                <span class="links_name">Kho</span>
+            </a>
+            <span class="hide-config">Kho</span>
+        </li>
+    </ul>
+    <div class="profile_content">
+        <div class="profile">
+            <div class="profile_details">
+                <img src="/img/fwb.jpg">
+                <div class="name_job">
+                    <div class="name">Ngô Thuận</div>
+                    <div class="job">DEV</div>
+                </div>
+            </div>
+            <button onclick="logout()">
+                <i class='bx bx-log-out' id="logo_out"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<form name="form-logout" method="POST" action="/auth/logout"></form>
+
+<script>
+    function logout() {
+        document.cookie = 'token' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        const formLogout = document.forms['form-logout']
+        formLogout.submit()
+    }
+</script>

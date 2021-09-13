@@ -1,0 +1,176 @@
+{{> header}}
+
+<div class="home_content">
+    <div class="text">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0" action="/me/hoa-don/tim-kiem">
+                    <select name="find" class="custom-select my-1" id="inlineFormCustomSelectPref">
+                        <option value="fullname">Họ và tên</option>
+                        <option value="phone">Số điện thoại</option>
+                        <option value="sanpham">Tên sản phẩm</option>
+                        <option value="phuongthuc">Phương thức</option>
+                    </select>
+                    <input name="q" type="text" class="form-control" aria-label="Text input with dropdown button"
+                        required>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Kiếm</button>
+                </form>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0" action="/me/hoa-don/tim-kiem/time">
+                    <button id="btn-luachon" type="button" class="btn btn-outline-warning" data-toggle="modal"
+                        data-target="#modal-date">
+                        Lựa Chọn
+                    </button>
+                    <input id="input-bd" name="bd" type="date" value="" class="form-control" required>
+                    đến
+                    <input id="input-kt" name="kt" type="date" value="" class="form-control" required>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Kiếm</button>
+                </form>
+            </div>
+        </nav>
+
+
+        <form name="container-form" method="POST" class="mt-4" action="/send/handle-form-action">
+            <a href="/me/hoa-don/thung-rac" class="btn btn-secondary float-right">
+                <ion-icon name="trash" size=""></ion-icon>Thùng Rác
+            </a>
+
+            <div class="mt-4 d-flex align-items-center">
+
+            </div>
+
+            <table class="table table-striped mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Thời Gian</th>
+                        <th scope="col">Họ và Tên</th>
+                        <th scope="col">Số Điện Thoại</th>
+                        <th scope="col">Địa Chỉ</th>
+                        <th scope="col">Sản Phẩm</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Số Tiền</th>
+                        <th scope="col">Phương thức</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each hoadon}}
+                    <tr class="{{this.phuongthuc}}">
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{prettifyDate this.createdAt}}</td>
+                        <td>{{this.fullname}}</td>
+                        <td>{{this.phone}}</td>
+                        <td>{{this.address}}</td>
+                        <td>{{this.sanpham}}</td>
+                        <td>{{this.model}}</td>
+                        <td class="money" data-money="{{this.money}}" data-phuongthuc="{{this.phuongthuc}}">
+                            {{formatMoney this.money}}</td>
+                        <td>{{this.phuongthuc}}</td>
+                        <td>
+                            <a href="/send/{{this._id}}/edit" class="btn btn-outline-success">Sửa</a>
+                            <a type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                data-target="#delete-modal" data-id="{{this._id}}">Xóa</a>
+                        </td>
+                        <td></td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="11" class="text-center">
+                            <h5>Bạn không có hóa đơn nào !</h5>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" colspan="5">Tổng số hóa đơn: {{countHoaDon}}</th>
+                        <th scope="col" colspan="6" id="toal-money">Tổng số tiền:</th>
+                    </tr>
+                </thead>
+            </table>
+        </form>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Xóa Hóa Đơn</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Hóa đơn sẽ được chuyển vào thùng rác !</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button id="btn-delete" type="button" class="btn btn-danger">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-date" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Chọn Nhanh Thời Gian</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="button" data-dismiss="modal" data-date="thang1"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 1</button>
+                                <button type="button" data-dismiss="modal" data-date="thang2"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 2</button>
+                                <button type="button" data-dismiss="modal" data-date="thang3"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 3</button>
+                                <button type="button" data-dismiss="modal" data-date="thang4"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 4</button>
+                                <button type="button" data-dismiss="modal" data-date="thang5"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 5</button>
+                                <button type="button" data-dismiss="modal" data-date="thang6"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 6</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" data-dismiss="modal" data-date="thang7"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 7</button>
+                                <button type="button" data-dismiss="modal" data-date="thang8"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 8</button>
+                                <button type="button" data-dismiss="modal" data-date="thang9"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 9</button>
+                                <button type="button" data-dismiss="modal" data-date="thang10"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 10</button>
+                                <button type="button" data-dismiss="modal" data-date="thang11"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 11</button>
+                                <button type="button" data-dismiss="modal" data-date="thang12"
+                                    class="btn btn-time btn-outline-danger mr-2 mb-2">Tháng 12</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form name="form-delete" method="POST"></form>
+    </div>
+</div>
+
+
+<!-- Javascript -->
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+<script src="/js/hoadon.js"></script>

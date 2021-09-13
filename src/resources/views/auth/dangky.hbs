@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/login/login-custom.css">
+<link rel="stylesheet" href="/css/login/login-responsive.css">
+
+
+<div class="wrapper">
+    <div class="container">
+        <h1>Welcome</h1>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <form class="form" method="POST" action="/auth/api/dangky">
+            <div class="form-input">
+                <input name="user" id="user" type="text" value="" placeholder="Username">
+                <p>Vui lòng nhập tài khoản !</p>
+            </div>
+
+            <div class="form-input ">
+                <input name="password" id="pass" type="password" value="" placeholder="Password">
+                <p>Vui lòng nhập mật khẩu !</p>
+            </div>
+
+            <div class="form-input ">
+                <button id="login-btn">Login</button>
+                <p>||| Tài khoản, mật khẩu không chính xác |||</p>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/login.js"></script>

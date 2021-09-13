@@ -1,0 +1,173 @@
+{{> header}}
+<div class="home_content">
+    <div class="text">
+        <div class="mt-4">
+            <h3>Tạo hóa đơn</h3>
+
+            <form method="POST" action="/send/create/hoa-don">
+                <div class="form-group">
+                    <label>Họ Và Tên</label>
+                    <input type="text" value="" name="fullname" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="number" value="" name="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Địa Chỉ</label>
+                    <input type="text" value="" name="address" class="form-control" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                                data-target="#modal-sanpham" required>
+                                Chọn Sản Phẩm
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="phuongthuc" id="exampleRadios1"
+                                    value="THANH TOÁN" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Thanh Toán
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="phuongthuc" id="exampleRadios2"
+                                    value="NỢ">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Nợ
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-hoadon" disabled>Tạo hóa đơn</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="content-gust-total">
+                            <p>Tên Sản Phẩm <span id="total-sanpham">---</span></p>
+                            <p>Model <span id="total-model">---</span></p>
+                            <p>Giá Tiền <span id="total-giatien">---</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <input id="input-sanpham" type="text" value="" name="sanpham" class="form-control">
+                    <input id="input-model" type="text" value="" name="model" class="form-control">
+                    <input id="input-money" type="text" value="" name="money" class="form-control">
+                </div>
+            </form>
+        </div>
+
+        {{!-- modal --}}
+        <div class="modal fade" id="modal-sanpham" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Chọn Sản Phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{#each sanpham}}
+                        <div class="custom-control custom-radio mt-4">
+                            <input type="radio" id="{{this._id}}" data-sanpham="{{this.sanpham}}"
+                                data-model="{{this.model}}" data-giaca="{{this.giahientai}}"
+                                data-soluong="{{this.soluong}}" name="customRadio" class="custom-control-input"
+                                required>
+                            <label class="custom-control-label" for="{{this._id}}">
+                                <div class="card w-70">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.sanpham}} ({{this.soluong}})</h5>
+                                        <p class="card-text">Model: {{this.model}} </p>
+                                        <p class="card-text">Giá Tiền: {{formatMoney this.giahientai}} </p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary btn-sanpham" data-dismiss="modal"
+                            disabled>Chọn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    const fullName = document.querySelector('input[name="fullname"]')
+    fullName.onblur = function () {
+        fullName.value = fullName.value.toUpperCase()
+    }
+</script>
+
+{{!-- Chọn Sản Phẩm --}}
+<script>
+    function formatMoney(str) {
+        return str.toString().split('').reverse().reduce((prev, next, index) => {
+            return ((index % 3) ? next : (next + ',')) + prev
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#modal-sanpham').on('show.bs.modal', function (event) {
+
+            //HIển thị thông tin sản phẩm ở hóa đơn
+            var tenSanPham;
+            var modelSanPham;
+            var giatienSanPham;
+
+            const checkBoxElement = $('.custom-control-input')
+            const submitSanPham = document.querySelector('.btn-sanpham')
+            checkBoxElement.change(function (e) {
+                tenSanPham = e.target.dataset.sanpham
+                modelSanPham = e.target.dataset.model
+                giatienSanPham = e.target.dataset.giaca
+                submitSanPham.disabled = false
+            })
+
+            const valueTenSanPham = tenSanPham;
+
+            submitSanPham.onclick = function (e) {
+                const totalSanPham = document.querySelector('#total-sanpham')
+                const totalModel = document.querySelector('#total-model')
+                const totalGiaTien = document.querySelector('#total-giatien')
+                const btnHoaDon = document.querySelector('.btn-hoadon')
+
+
+
+                btnHoaDon.disabled = false
+                if (tenSanPham != valueTenSanPham) {
+                    totalSanPham.innerHTML = tenSanPham;
+                    totalModel.innerHTML = modelSanPham;
+                    totalGiaTien.innerHTML = formatMoney(giatienSanPham);
+
+                    const inputSanPham = document.querySelector('#input-sanpham')
+                    const inputModel = document.querySelector('#input-model')
+                    const inputGiaTien = document.querySelector('#input-money')
+
+                    inputSanPham.value = tenSanPham;
+                    inputModel.value = modelSanPham;
+                    inputGiaTien.value = giatienSanPham;
+                }
+            }
+
+            //Kiểm tra hàng nếu hết hàng sẽ bị dis
+            for (let i = 0; i < checkBoxElement.length; i++) {
+                if (checkBoxElement[i].dataset.soluong == 0 || checkBoxElement[i].dataset.giaca == '') {
+                    checkBoxElement[i].disabled = true
+                }
+            }
+
+        })
+    })
+</script>

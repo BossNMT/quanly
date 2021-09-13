@@ -1,0 +1,130 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+/*Backgroud*/
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-weight: 300;
+}
+
+body{
+    perspective:800px;
+    height: 100vh;
+    margin:0;
+    overflow: hidden;
+    font-family: 'Gudea', sans-serif;
+    background: #EA5C54 ; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #EA5C54  0%, #bb6dec 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#EA5C54 ), color-stop(100%,#bb6dec)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* IE10+ */
+    background: linear-gradient(135deg,  #EA5C54  0%,#bb6dec 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EA5C54 ', endColorstr='#bb6dec',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}  
+
+
+body{
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	font-weight: 300;
+}
+
+/*Form Center*/
+.container{
+	max-width: 600px;
+	margin: 30px auto;
+	padding: 80px 0;
+	height: 400px;
+	text-align: center;
+}
+
+
+/*WC Icon*/
+.container h1 {
+    font-size: 100px;
+	transition-duration: 1s;
+	transition-timing-function: ease-in-put;
+	font-weight: 600;
+}
+
+ion-icon {
+    font-size: 70px;
+}
+
+
+/*Form*/
+.form {
+    padding: 20px 0 7px;
+	position: relative;
+	z-index: 2;
+}
+
+.form-input {
+    margin-bottom: 15px;
+}
+
+.form input{
+    width: 300px;
+    display: block;
+    background-color: rgb(241, 241, 241);
+    outline: 0;
+    padding: 15px 15px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    color: #fa48dc;
+    transition-duration: 0.25s;
+}
+
+.form input:hover {
+    background-color: white;
+}
+
+.form input:focus {
+    width: 400px;
+    border: 5px solid #fa48dc;
+}
+
+p {
+    font-style: italic;
+    font-weight: 1000;
+    transition-duration: 0.25s;
+    display: none;
+}
+/*Acion*/
+.action p{
+    display: block;
+    transition-duration: 0.25s;
+}
+
+
+
+/*Button*/
+button {
+    appearance: none;
+	outline: 0;
+    appearance: none;
+    outline: 0;
+    background-color: rgb(241, 241, 241);
+    border: 0;
+    padding: 15px 15px;
+    font-size: 25px;
+    font-weight: 700;
+    width: 150px;
+    border-radius: 30px;
+    transition-duration: 0.25s;
+    color: rgb(230, 68, 194);
+    margin-bottom: 7px;
+}
+
+button:hover {
+    background-color: #fa48dc;
+    color: white;
+    border: 5px solid white;
+}
+	
