@@ -1,0 +1,84 @@
+.home_content {
+    box-sizing: border-box;
+    .text {
+        margin: 0;
+    }
+}   
+.text .header__dashboard {
+    background: #ffffff;
+    width: 100%;
+    height: 56px;
+    border-bottom: 0.7px solid rgba(185, 184, 184, 0.5);
+    display: flex;
+    align-items: center;
+
+    .admin {
+        margin-left: 64px;
+        border-bottom: 3px solid #344980;
+
+        h6 {
+            color: #39447c;
+            font-weight: 600;
+        }
+    }
+
+}
+
+.container__dashboard {
+    width: 100%;
+    background-color: #f3f4f6;
+
+    .solieu {
+        padding: 36px;
+        display: flex;
+        justify-content: space-around;
+        
+        .solieu__homnay {
+            width: 300px;
+            height: 150px;
+            background-color: #ffffff;
+            box-shadow: 3px 3px 3px 3px #dddcdc;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .icon {
+                i {
+                    font-size: 54px;
+                }
+            }
+
+            .dulieu {
+                display: flex;
+                align-items: center;
+
+                .dulieu__loaidulieu {
+                    color: #adafae;
+                    padding-right: 4px;
+                }
+
+                .dulieu__conso {
+                    color: #39447c;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .bieudo {
+        width: 1200px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        margin: 36px;
+        padding: 24px;
+        box-shadow: 3px 3px 3px 3px #dddcdc;
+        border-radius: 12px;
+        height: 300px;
+        
+    }
+ 
+}
+
