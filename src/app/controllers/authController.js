@@ -44,7 +44,7 @@ class loginController {
                 return res.redirect('back')
             }
             if (bcrypt.compareSync(req.body.password, auth.password)) {
-                const token = jwt.sign({ userId: auth._id }, process.env.APP_SECRET_TOKEN, {
+                const token = jwt.sign({ userId: auth._id }, 'ThuanDzai', {
                     expiresIn: "2d",
                 })
                 res.render('home', {
@@ -55,6 +55,7 @@ class loginController {
                 return res.redirect('back')
             }
         } catch (error) {
+            console.log(error)
             res.json(error)
         }
     }
